@@ -1,7 +1,6 @@
 
 export function renderHeader({ back = false, profile = false, image = null } = {}) {
 
-  console.log(back+", "+profile);
   if (back) {
     const backBtn = document.getElementById("header-back-button");
     backBtn.style.visibility = "visible"; 

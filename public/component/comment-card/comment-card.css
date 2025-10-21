@@ -1,4 +1,5 @@
 comment-card{
+    width: 100%;
     margin: 10px;
 }
 
@@ -13,13 +14,37 @@ comment-card{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 .comment-info-container{
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
     gap: 6px;
 }
 
-.content{
+.comment-update-button{
+    border-radius: 5px;
+    border-color: rgba(172, 160, 235, 1);
+    background-color: white;
+}
+
+.comment-title-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.comment-info-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 6px;
+}
+
+.comment-contents{
+    flex-wrap: nowrap; 
+    width: 100%; 
     text-align: start;
 }

@@ -14,8 +14,6 @@ export const postApi = {
         if(id != null){
             url += `?lastSeenId=${encodeURIComponent(id)}`;
         }
-
-        console.log(url);
         return api(url, {method: "GET"});
     },
 

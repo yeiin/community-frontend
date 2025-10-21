@@ -1,9 +1,13 @@
 .round-button{
-    background-color: rgba(172, 160, 235, 1);
+    background-color: #ACA0EB;
     color: white;
     width: 138px;
     height: 39px;
     opacity: 1;
     border-radius: 16px;     
     border-color: transparent;   
+}
+
+.round-button:hover{
+    background-color: #7F6AEE;
 }

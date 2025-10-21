@@ -1,6 +1,5 @@
 export async function api(url, options = {}) {
-  console.log(url);
-  
+    
   const defaultHeaders = {
     "Content-Type": "application/json",
   };
@@ -9,8 +8,8 @@ export async function api(url, options = {}) {
   if (token) defaultHeaders["Authorization"] = `Bearer ${token}`;
   
   const mergedOptions = {
-    headers: { ...defaultHeaders},
     ...options,
+    headers: { ...defaultHeaders, ...(options.headers || {}) },
   };
 
   const response = await fetch(url, mergedOptions);

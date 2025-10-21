@@ -15,11 +15,23 @@ document.addEventListener("DOMContentLoaded", async () => {
   await componentLoader("add-post-button", "/component/button/round-button/round-button", true, false, {
     text: "게시글 작성"
   });
+  addEventListenerToPostButton();
 
-  await fetchPost();
+  await fetchPosts();
 
   addEventListenerToScroll();  
 });
+
+function addEventListenerToPostButton(){
+
+  const addPostBtn = document.querySelector("#add-post-button button");
+
+  addPostBtn.addEventListener("click", async () => {  
+    window.location.href = "/pages/writing/writing.html";
+  });
+
+
+}
 
 function addEventListenerToScroll(){
   window.addEventListener("scroll", async () => {
@@ -30,13 +42,13 @@ function addEventListenerToScroll(){
     const scrollHeight = document.body.scrollHeight;
 
     if (scrollTop + innerHeight >= scrollHeight - 100) {
-      await fetchPost();
+      await fetchPosts();
     }
   });
 
 }
 
-async function fetchPost() {
+async function fetchPosts() {
   isLoading = true;
   try{
     const response = await postApi.getPosts(lastSeenId);
@@ -94,7 +106,7 @@ async function renderPost(posts){
 
     const card = document.getElementById(wrapper.id);
     card.addEventListener("click", ()=>{
-      alert("click"+card.dataset.postId);
+      location.href = `/pages/post/post.html?postId=${card.dataset.postId}`;
     });
 
   });

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="writing.css" />
+    <script type="module" src="writing.js" defer></script>
+    <title>post</title>
+</head>
+<body>
+    <div id="header"></div>
+    <div class="container">
+        <div class="writing-container">
+            <p class="page-title">게시글 작성</p>
+            <div class="input-container">
+                <p class="sub-title">제목*</p>
+                <textarea class="text-area" id="title-text" placeholder="제목을 입력해주세요. (최대 26글자)"></textarea>
+            </div>
+            <div class="input-container">
+                <p class="sub-title">내용*</p>
+                <textarea class="text-area" id="content-text" style="min-height: 200px;" placeholder="내용을 입력해주세요."></textarea>
+            </div>
+             <div class="input-container">
+                <p class="sub-title">이미지</p>
+                <div class="image-button-container">
+                    <button>파일 선택</button>
+                    <p>파일을 선택해주세요.</p>
+                </div>
+                
+            </div>
+        </div>
+        <div id="complete-button"></div>
+    </div>
+</body>
+</html>
