@@ -1,0 +1,49 @@
+dialog{
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    border-color: transparent;
+    align-content: center;
+    justify-content: center;
+}
+
+.dialog-container{
+    width: 100%;
+}
+
+.dialog-title{
+    font-family: "Pretendard", sans-serif;
+    font-weight: 700;
+    font-size: 24px; 
+}
+
+.dialog-sub-title{
+    font-family: "Pretendard", sans-serif;
+    font-weight: 400;
+    font-size: 20px; 
+}
+
+.button-container{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-self:center;
+    gap: 5px;
+}
+
+.dialog-button{
+    width: 100%;
+    max-width: 127;
+    border-radius: 5px;
+    border-color: transparent;
+}
+
+#cancel-button{
+    background-color: black;
+    color: white;
+}
+
+
+#confirm-button{
+    background-color: rgba(196, 165, 250, 1);
+}
