@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="profile.css" />
+    <script type="module" src="profile.js" defer></script>
+    <title>profile</title>
+</head>
+<body>
+     <div id="header"></div>
+     <div class="container">
+        <div id="profile-container">
+            <div id="profile-title">회원정보수정</div>
+            <div class="image-container">
+                <div id="image-container-title">
+                    <span class="profile-subtitle"> 프로필 사진</span>
+                    <br>
+                    <span class="helper-text">* helper text</span>
+                </div>
+                <br>
+                <div class="profile-image-upload">
+                    <label for="profileImage" class="profile-label">
+                        <div class="profile-circle" id="profilePreview">
+                        <span class="plus">+</span>
+                        </div>
+                        <input type="file" id="profileImage" accept="image/*" hidden />                
+                    </label>
+                </div>
+            </div>
+            <div class="profile-upload">           
+                <div class="email-container">
+                    <label>이메일</label>
+                    <p class="email">abcd@gmail.com</p>
+                </div>
+                <br>
+                <div class="nickname" id="nickname"></div>
+                <br>
+            </div>
+            <div class="button-container">
+                <div id="modify-button"></div>
+                <div id="withdrawal-button"></div>
+            </div>
+        </div> 
+     </div>
+     <div id="dialog"></div>
+</body>
+</html>

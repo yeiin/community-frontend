@@ -1,0 +1,113 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(244, 245, 247, 1);
+}
+
+.container{
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+#profile-container{
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+    justify-content: center;
+    max-width: 400px;
+}
+
+#profile-title{
+    font-family: "Pretendard", sans-serif;
+    font-weight: 700;
+    font-size: 32px; 
+}
+
+.image-container{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#image-container-title{
+    width: 100%;
+    text-align: start;
+}
+
+.profile-subtitle{
+    font-family: "Pretendard", sans-serif;
+    font-weight: 700;
+    font-size: 15px; 
+}
+
+.profile-image-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-circle {
+  width: 160px;
+  height: 160px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+.profile-circle:hover {
+  background-color: #c7c7c7;
+}
+
+.plus {
+  font-size: 48px;
+  color: #555;
+  user-select: none;
+  pointer-events: none;
+}
+
+.profile-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.helper-text {
+  color: #ff6b6b;
+  font-size: 13px;
+  margin: 4px 0 0 0;
+}
+
+.profile-upload{
+    text-align: start;
+    align-items: start;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.button-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}
