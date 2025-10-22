@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await componentLoader("comment-submit-button", "/component/button/round-button/round-button", true, false, {
     text: "댓글 등록"
   });
+  addEventListenerToCommentSubmitButton(postId);
 
   await fetchComments(postId);
   addEventListenerToPostModifiyButton();
@@ -28,7 +29,38 @@ document.addEventListener("DOMContentLoaded", async () => {
   addEventListenerToScroll(postId);
   addEventListenerToLikeButton();
 
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted && sessionStorage.getItem("shouldReload")==="true") {
+      sessionStorage.removeItem("shouldReload");
+      window.location.reload();
+    }
+  });
 });
+
+function addEventListenerToCommentSubmitButton(postId){
+  const commentSubmitBtn = document.querySelector("#comment-submit-button");
+  
+  commentSubmitBtn.addEventListener("click", async () => {
+    const comment = document.querySelector("#comment-text");
+
+    if(comment == null && comment.value.length == 0) return;
+
+    try{
+      const response = await commentApi.postComment(postId,{contents: comment.value});
+
+      if(!response.ok){
+        alert("댓글 작성에 실패했습니다.");
+        return;
+      }
+
+    }catch(e){
+
+    }finally{
+      window.location.reload();
+    }
+  });
+
+}
 
 function addEventListenerToPostDeleteButton(postId){
   const postDeleteBtn = document.querySelector("#post-delete-button");
@@ -79,7 +111,7 @@ function addEventListenerToPostModifiyButton(){
   const postModifyBtn = document.querySelector("#post-modify-button");
 
   postModifyBtn.addEventListener("click", async () => {  
-    window.location.href = "/pages/writing/writing.html";
+    window.location.href = "/pages/writing/writing.html?isNew=false";
   });
 }
 
@@ -132,6 +164,7 @@ async function fetchPost(postId){
     const views = document.getElementById("view-count");
     views.innerText = result.postCounter.views;
 
+    sessionStorage.setItem("post", JSON.stringify(result));
 
   }catch(e){
 
@@ -187,12 +220,16 @@ async function renderComments(comments){
   });
 }
 
+//TODO
+async function addEventListenerToCommentCard() {
+
+}
 
 async function addEventListenerToLikeButton(postId) {
   const likeButton = document.getElementById("post-like");
 
   likeButton.addEventListener("click",()=>{
-    try{
+    try{ 
 
     }catch(e){
 
