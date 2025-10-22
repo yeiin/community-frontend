@@ -42,3 +42,44 @@
   height: 100%;
   object-fit: cover;  
 }
+
+.profile-wrapper {
+  position: relative;
+}
+
+.profile-menu {
+  position: absolute;
+  top: 110%;  
+  right: 0;
+  z-index: 999; 
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.profile-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 5px 0;
+}
+
+.profile-menu li {
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  background-color: #e8e8e8;
+  margin: 3px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.profile-menu li:hover {
+  background-color: #dcdcdc;
+}
+
+.hidden {
+  display: none;
+}

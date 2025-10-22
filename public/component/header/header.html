@@ -2,7 +2,16 @@
   <div class="header-container">
     <button id="header-back-button" class="back-button" style="visibility: hidden;"><</button>
     <h1 class="header-title">아무 말 대잔치</h1>
-    <div id="header-profile-image" style="visibility: hidden"></div>
+    <div class="profile-wrapper">
+      <button id="header-profile-image" style="visibility: visible;">프로필</button>
+      <div id="profile-menu" class="profile-menu hidden">
+        <ul>
+          <li id="header-profile-modify-button">회원정보수정</li>
+          <li id="header-password-modify-button">비밀번호수정</li>
+          <li id="logout-button">로그아웃</li>
+        </ul>
+      </div>
+    </div>
   </div>
   <hr>
 </header>
