@@ -9,8 +9,8 @@ export const authApi = {
       body: JSON.stringify(data),
     }),
 
-  logout: () =>
-    api(baseAuthUrl, {
+  logout: (id) =>
+    api(`${baseAuthUrl}?memberId=${encodeURIComponent(id)}`, {
       method: "DELETE"
     }),
 
