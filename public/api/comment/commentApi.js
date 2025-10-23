@@ -1,6 +1,5 @@
 import { api } from "/api/api.js";
 
-
 const basePostUrl = "http://localhost:8080/posts/";
 const baseCommentUrl = "/comments";
 
@@ -21,15 +20,15 @@ export const commentApi = {
         body: JSON.stringify(data)})
     },
     
-    patchComment: (data) => {
-        let url = `${basePostUrl}${data.postId}${baseCommentUrl}/}${data.commentId}`;
+    patchComment: (postId, commentId, data) => {
+        let url = `${basePostUrl}${postId}${baseCommentUrl}/${commentId}`;
         api(url, {
         method: "PATCH",
         body: JSON.stringify(data)})
     },
 
     deleteComment: (data) => {
-        let url = `${basePostUrl}${data.postId}${baseCommentUrl}/}${data.commentId}`;
+        let url = `${basePostUrl}${data.postId}${baseCommentUrl}/${data.commentId}`;
         api(url, {method: "DELETE"})
     },
 
