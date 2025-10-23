@@ -44,11 +44,12 @@
 }
 
 .profile-container{
+    display: flex;
+    flex-direction: row;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 10px;
-    display: flex;
-    flex-direction: row;
+    align-items: center;
 }
 
 .profile-image {
