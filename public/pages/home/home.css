@@ -1,20 +1,18 @@
 html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+height: 100%;
   background-color: rgba(244, 245, 247, 1);
 }
 
 .container{
-    width: 600px;
-    align-items: center;
-    align-self: center;
-    justify-self: center;
+  width: 100%;
+  max-width: 400px;
+  align-self: center;
+  justify-self: center;
 }
 
 .sub-title-container{
-    padding-top: 20px;
-    padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .highlight {

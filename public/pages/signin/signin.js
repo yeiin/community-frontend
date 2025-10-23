@@ -2,9 +2,19 @@ import { componentLoader } from '/global/componentLoader.js';
 import { renderHeader } from "/component/header/header.js";
 import { authApi } from '/api/auth/authApi.js';
 
-
 let emailCheck = false;
 let passwordCheck = false;
+
+let email;
+let emailHelperText;
+
+let password;
+let passwordHelperText;
+
+let signinBtn;
+
+const emailPattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,20}$/;
 
 document.addEventListener("DOMContentLoaded", async () => {
 
@@ -18,7 +28,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     placeholder: "이메일을 입력하세요.",
     helper: "*이메일을 입력하세요.",
   });
-  addEventListenerToEmail();
+  email = document.querySelector("#email input");
+  emailHelperText = emailHelperText = document.querySelector("#email .helper-text");
+  
 
   await componentLoader("password", "/component/input-form/input-form", true, false,{
     id: "password",
@@ -27,68 +39,71 @@ document.addEventListener("DOMContentLoaded", async () => {
     placeholder: "비밀번호를 입력하세요.",
     helper: "*비밀번호를 입력하세요.",
   });
-  addEventListenerToPassword();
+  password = document.querySelector("#password input");
+  passwordHelperText = document.querySelector("#password .helper-text");
 
   await componentLoader("signin-button", "/component/button/main-button/main-button", true, false, {
     text: "로그인"
   });
-  addEventListenerTpSignInButton();
+  signinBtn = document.querySelector("#signin-button button");
 
   await componentLoader("signup-button","/component/button/text-button/text-button", true, false, {
     text: "회원가입"
   });
+  
+
+  addEventListenerToEmail();
+  addEventListenerToPassword();
+  addEventListenerTpSignInButton();
   addEventListenerToSignUpButton();
 
 });
 
-const emailPattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 function addEventListenerToEmail(){
-  const email = document.querySelector("#email input");
+
   email.addEventListener("input", () => {
-    let emailHelperText = document.querySelector("#email .helper-text");
-
-    if(email.value == null){
+ 
+    if(!email.value || email.value.trim().length === 0){
       emailHelperText.textContent = "이메일을 입력하세요.";
-      emailToFalse();
+      emailCheck = false;
       return;
-    }
-
-    if(!emailPattern.test(email.value)){
+    }else if(!emailPattern.test(email.value)){
       emailHelperText.textContent = "* 올바른 이메일 주소 형식을 입력해주세요. (예: example@example.com)";
-      emailToFalse();
+      emailCheck = false;
       return;
+    }else{
+      emailCheck = true;
+      emailHelperText.textContent = "";
     }
 
-    emailToTrue();
-    emailHelperText.textContent = "";
+    updateSigninButtonState();
   });
 }
 
 function addEventListenerToPassword(){
-  const password = document.querySelector("#password input");
-  password.addEventListener("input", () => {
-    let passwordHelperText = document.querySelector("#password .helper-text");
+  password.addEventListener("input", () => { 
 
-    if(password.value != null) {
-      passwordToTrue();
+    if(!password.value || password.value.trim().length === 0) {
+      passwordCheck = false;
+      passwordHelperText.textContent = "*비밀번호를 입력하세요.";
+    }else if(!passwordPattern.test(password.value)){
+      passwordHelperText.textContent = "*비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야합니다.";
+      passwordCheck = false;
+    }else{
+      passwordCheck = true;
       passwordHelperText.textContent = "";
-      return;
+      
     }
-    passwordToFalse();
+    updateSigninButtonState();
   });
 }
 
 
 function addEventListenerTpSignInButton(){
-  const signinBtn = document.querySelector("#signin-button button");
   signinBtn.disabled = true;
 
   signinBtn.addEventListener("click", async () => {
-    const email = document.querySelector("#email input");
-    const emailHelperText = document.querySelector("#email .helper-text");
-    const password = document.querySelector("#password input");
-    const passwordHelperText = document.querySelector("#password .helper-text");
-
+  
     if (signinBtn.disabled) return;
 
     const response = await authApi.login({ email: email.value, password: password.value });
@@ -107,8 +122,7 @@ function addEventListenerTpSignInButton(){
     localStorage.setItem("userId", result.userId);
     localStorage.setItem("accessToken", result.accessToken);
     localStorage.setItem("refreshToken", result.refreshToken);
-    window.location.replace("/pages/home/home.html");
-    
+    window.location.replace("/pages/home/home.html");   
   });
 }
 
@@ -119,30 +133,7 @@ function addEventListenerToSignUpButton(){
   });
 }
 
-function emailToFalse(){
-  emailCheck = false;
-  updateSigninButtonState();
-}
-
-function emailToTrue(){
-  emailCheck = true;
-  updateSigninButtonState();
-}
-
-function passwordToFalse(){
-  passwordCheck = false;
-  updateSigninButtonState();
-}
-
-function passwordToTrue(){
-  passwordCheck = true;
-  updateSigninButtonState();
-}
-
 function updateSigninButtonState() {
-  const signinBtn = document.querySelector("#signin-button button");
-
-  if (!signinBtn) return;
 
   if (emailCheck && passwordCheck) {
     signinBtn.disabled = false;

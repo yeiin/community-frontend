@@ -23,6 +23,6 @@ html, body {
 #login-box{  
     justify-content: center;
     text-align: start; 
-    width: 350px;
-    height: 198px;
+    width: 100%;
+    max-width: 350px;
 }

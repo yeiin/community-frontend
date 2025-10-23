@@ -7,7 +7,6 @@ let lastSeenId = null;
 let fetchComplete = false;
 
 document.addEventListener("DOMContentLoaded", async () => {
-  //header
   await componentLoader("header","/component/header/header", true, true, null);
   renderHeader({ back: false, profile: true });
   
