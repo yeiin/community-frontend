@@ -114,7 +114,7 @@ function titleCheckToFalse(){
   titleHelperText.style.visibility = "visible";
   changeSubmitButtonState();
 }
-
+ 
 function contentCheckToTrue(){
   const contentHelperText = document.getElementById("content-helper-text");
   
