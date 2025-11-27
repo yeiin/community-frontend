@@ -100,10 +100,15 @@ jobs:
             sudo apt-get install -y nodejs
           EOF
       
-      - name: Deploy to EC2 via Docker Compose
+      - name: Deploy to EC2
         run: |
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
-            cd /home/${{ secrets.SERVER_USER }}
-            docker compose pull
-            docker compose up -d
+            docker pull ${{ secrets.DOCKER_USERNAME }}/community-fe:latest
+            
+            docker stop community-fe || true
+            docker rm community-fe || true
+            docker run -d \
+              -p 3000:3000 \
+              --name community-fe \
+              ${{ secrets.DOCKER_USERNAME }}/community-fe:latest
           EOF
